@@ -1,79 +1,235 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
-import React from "react";
-import { useState } from "react";
-const [name, setName] = useState("");
-const [email, setEmail] = useState("");
-const [country, setCountry] = useState("");
-const [phone, setPhone] = useState("");
-const [password, setPassword] = useState("");
-const [pass, setPass] = useState("");
-const SignupChildren = () => {
+import React, { useEffect, useCallback } from "react";
+import {
+  ImageBackground,
+  View,
+  Image,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+
+import { useForm } from "react-hook-form";
+import {
+  useFonts,
+  BubblegumSans_400Regular,
+} from "@expo-google-fonts/bubblegum-sans";
+
+const SignupParent = () => {
+  const { register, handleSubmit, setValue } = useForm();
+  const onSubmit = useCallback((formData) => {
+    console.log(formData);
+  }, []);
+
+  const onChangeField = useCallback(
+    (name) => (text) => {
+      setValue(name, text);
+    },
+    []
+  );
+
+  useEffect(() => {
+    register("name");
+    register("email");
+    register("phone");
+    register("country");
+    register("password");
+    register("confirmPassword");
+  }, [register]);
+
+  let [fontsLoaded] = useFonts({
+    BubblegumSans_400Regular,
+  });
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View>
-      <View>
-        <Text>Name</Text>
-        <TextInput
+    <View style={styles.field}>
+      {/* <TextInput
+        autoCompleteType="email"
+        keyboardType="email-address"
+        textContentType="emailAddress"
+        placeholder="Email"
+        onChangeText={onChangeField("email")}
+      />
+      <TextInput
+        secureTextEntry
+        autoCompleteType="password"
+        placeholder="Password"
+        onChangeText={onChangeField("password")}
+      />
+      <Button title="Submit" onPress={handleSubmit(onSubmit)} /> */}
+
+      <ImageBackground
+        source={require("../assets/Green.png")}
+        style={styles.note}
+      >
+        <Text style={styles.title}>CREATE ACCOUNT</Text>
+        <Text style={styles.subtitle}>Name</Text>
+        <ImageBackground
+          source={require("../assets/textbox.png")}
           style={styles.input}
-          type="text"
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-          placeholder="Name"
-        />
-      </View>
-      <View>
-        <Text>Email</Text>
-        <TextInput
-          type="email"
+        >
+          <TextInput
+            textContentType="name"
+            placeholder="name"
+            onChangeText={onChangeField("name")}
+            style={{ fontFamily: "BubblegumSans_400Regular", color: "white" }}
+          />
+        </ImageBackground>
+        <Text style={styles.subtitle}>Email</Text>
+        <ImageBackground
+          source={require("../assets/textbox.png")}
           style={styles.input}
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          placeholder="Email"
-        />
-      </View>
-      <View>
-        <Text>Country</Text>
-        <TextInput
-          type="text"
+        >
+          <TextInput
+            autoCompleteType="email"
+            keyboardType="email-address"
+            textContentType="emailAddress"
+            placeholder="Email"
+            onChangeText={onChangeField("email")}
+            style={{ fontFamily: "BubblegumSans_400Regular", color: "white" }}
+          />
+        </ImageBackground>
+        <Text style={styles.subtitle}>Phone No.</Text>
+        <ImageBackground
+          source={require("../assets/textbox.png")}
           style={styles.input}
-          onChange={(e) => setCountry(e.target.value)}
-          value={country}
-          placeholder="Country"
-        />
-      </View>
-      <View>
-        <Text>Phone No.</Text>
-        <TextInput
+        >
+          <TextInput
+            keyboardType="numeric"
+            placeholder="Phone number"
+            onChangeText={onChangeField("phone")}
+            style={{ fontFamily: "BubblegumSans_400Regular", color: "white" }}
+          />
+        </ImageBackground>
+        <Text style={styles.subtitle}>Country of Residence</Text>
+        <ImageBackground
+          source={require("../assets/textbox.png")}
           style={styles.input}
-          type="number"
-          onChange={(e) => setPhone(e.target.value)}
-          value={phone}
-          placeholder="Phone"
-        />
-      </View>
-      <View>
-        <Text>Password</Text>
-        <TextInput
-          type="password"
+        >
+          <TextInput
+            textContentType="country"
+            placeholder="Country"
+            onChangeText={onChangeField("country")}
+            style={{ fontFamily: "BubblegumSans_400Regular", color: "white" }}
+          />
+        </ImageBackground>
+        <Text style={styles.subtitle}>Password</Text>
+        <ImageBackground
+          source={require("../assets/textbox.png")}
           style={styles.input}
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          placeholder="Password"
-        />
-      </View>
-      <View>
-        <Text>Confirm Password</Text>
-        <TextInput
-          type="password"
+        >
+          <TextInput
+            secureTextEntry
+            autoCompleteType="password"
+            placeholder="Password"
+            onChangeText={onChangeField("confirmPassword")}
+            style={{ fontFamily: "BubblegumSans_400Regular", color: "white" }}
+          />
+        </ImageBackground>
+        <Text style={styles.subtitle}>Confirm Password</Text>
+        <ImageBackground
+          source={require("../assets/textbox.png")}
           style={styles.input}
-          onChange={(e) => setPass(e.target.value)}
-          value={pass}
-          placeholder="Password"
-        />
-      </View>
+        >
+          <TextInput
+            secureTextEntry
+            autoCompleteType="password"
+            placeholder="Password"
+            onChangeText={onChangeField("password")}
+            style={{ fontFamily: "BubblegumSans_400Regular", color: "white" }}
+          />
+        </ImageBackground>
+
+        <View style={styles.display}>
+          <View style={styles.display2}>
+            <TouchableOpacity onPress={handleSubmit(onSubmit)}>
+              <ImageBackground
+                source={require("../assets/OK.png")}
+                style={styles.OK}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <ImageBackground
+                source={require("../assets/Reset.png")}
+                style={styles.REJECT}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ImageBackground>
+
+      <Image
+        source={require("../assets/landscape.png")}
+        style={styles.bottombar}
+      />
     </View>
   );
 };
 
-export default SignupChildren;
+export default SignupParent;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 30,
+    fontFamily: "BubblegumSans_400Regular",
+    color: "white",
+    paddingBottom: 20,
+  },
+  subtitle: {
+    fontSize: 20,
+    fontFamily: "BubblegumSans_400Regular",
+    color: "white",
+    paddingTop: 5,
+  },
+  input: {
+    marginTop: 5,
+    height: 35,
+    width: 250,
+    paddingLeft: 25,
+    paddingRight: 25,
+    paddingTop: 2.5,
+  },
+  field: {
+    marginTop: 30,
+    justifyContent: "center",
+    alignContent: "center",
+  },
+  display: {
+    flex: 1,
+    marginTop: 40,
+  },
+  display2: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  OK: {
+    height: 80,
+    width: 80,
+    resizeMode: "stretch",
+    marginRight: 80,
+  },
+  REJECT: {
+    height: 80,
+    width: 80,
+    resizeMode: "stretch",
+  },
+  note: {
+    height: 600,
+    width: window.width,
+    resizeMode: "stretch",
+    marginLeft: 25,
+    marginRight: 25,
+    marginTop: 40,
+    paddingTop: 49,
+    alignItems: "center",
+  },
+  bottombar: {
+    height: 222,
+    width: window.width,
+    resizeMode: "stretch",
+  },
+});
