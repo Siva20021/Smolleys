@@ -72,7 +72,7 @@ const SplashScreen = ({ props }) => {
             >
               <TouchableOpacity
                 style={[styles.buttonText]}
-                onPress={() => props.navigation.navigate("SplashScreen2")}
+                onPress={() => navigation.navigateToScreen("SplashScreen2")}
               >
                 <Text style={[styles.buttonContent, { color: "white" }]}>
                   Next
@@ -100,9 +100,9 @@ export default SplashScreen;
 const styles = StyleSheet.create({
   buttonContent: {
     alignSelf: "center",
-    paddingTop: 30,
+    paddingTop: 20,
     fontFamily: "BubblegumSans_400Regular",
-    fontSize: 24,
+    fontSize: 40,
   },
   topbar: {
     height: 555,

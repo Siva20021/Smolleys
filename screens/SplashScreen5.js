@@ -1,5 +1,7 @@
 import {
   ImageBackground,
+  TouchableOpacity,
+  Image,
   StyleSheet,
   Text,
   View,
@@ -82,6 +84,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 50,
   },
   onboard: {
     top: 0,
