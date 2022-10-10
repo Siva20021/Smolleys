@@ -13,7 +13,7 @@ import {
   BubblegumSans_400Regular,
 } from "@expo-google-fonts/bubblegum-sans";
 const win = Dimensions.get("window");
-const SplashScreen5 = () => {
+const SplashScreen5 = ({ navigation }) => {
   let [fontsLoaded] = useFonts({
     BubblegumSans_400Regular,
   });
@@ -37,7 +37,10 @@ const SplashScreen5 = () => {
           source={require("../assets/Button.png")}
           style={styles.button}
         >
-          <TouchableOpacity style={[styles.buttonText]}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("SignupParent")}
+            style={[styles.buttonText]}
+          >
             <Text style={[styles.buttonContent, { color: "white" }]}>
               Parents
             </Text>

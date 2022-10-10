@@ -10,15 +10,32 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+
 import { useForm } from "react-hook-form";
 import {
   useFonts,
   BubblegumSans_400Regular,
 } from "@expo-google-fonts/bubblegum-sans";
 
-const SignupParent = () => {
+const SignupParent = ({ navigation }) => {
   const { register, handleSubmit, setValue } = useForm();
   const onSubmit = useCallback((formData) => {
+    // Start Code
+    const { email, password, name } = formData;
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        console.log(result);
+        navigation.navigate("AccountSuccess");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // End
     console.log(formData);
   }, []);
 
@@ -152,7 +169,7 @@ const SignupParent = () => {
                 style={styles.OK}
               />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
               <ImageBackground
                 source={require("../assets/Reset.png")}
                 style={styles.REJECT}

@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     width: win.width,
   },
   note: {
-    height: 200,
+    height: 100,
     width: win.width - 30,
     paddingLeft: 0,
     marginTop: 100,

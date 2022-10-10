@@ -13,9 +13,27 @@ import {
   useFonts,
   BubblegumSans_400Regular,
 } from "@expo-google-fonts/bubblegum-sans";
-const Login = () => {
+
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+
+const Login = ({ navigation }) => {
   const { register, handleSubmit, setValue } = useForm();
   const onSubmit = useCallback((formData) => {
+    // Firebase Code
+    const { email, password } = formData;
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        console.log(result);
+        navigation.navigate("AccountSuccess");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // End Firebase Code
     console.log(formData);
   }, []);
 
@@ -79,7 +97,7 @@ const Login = () => {
                 style={styles.OK}
               />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
               <ImageBackground
                 source={require("../assets/Reset.png")}
                 style={styles.REJECT}

@@ -45,7 +45,8 @@ const SplashScreen4 = ({ navigation }) => {
         >
           <TouchableOpacity
             style={[styles.buttonText]}
-            onPress={() => navigation.navigate("SplashScreen4")}
+            onPress={() => console.log("hello")}
+            // onPress={() => navigation.navigate("SplashScreen5")}
           >
             <Text style={[styles.buttonContent, { color: "white" }]}>
               Get Started
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     width: win.width,
   },
   note: {
-    height: 200,
+    height: 100,
     width: win.width - 30,
     paddingLeft: 0,
     marginTop: 100,

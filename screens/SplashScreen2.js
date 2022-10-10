@@ -7,6 +7,7 @@ import {
   ImageBackground,
   Button,
   TouchableOpacity,
+  TouchableOpacityComponent,
 } from "react-native";
 import React from "react";
 import {
@@ -17,7 +18,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const win = Dimensions.get("window");
 
-const SplashScreen2 = ({ props }) => {
+const SplashScreen2 = ({ navigation }) => {
+  function nextPage() {}
   let [fontsLoaded] = useFonts({
     BubblegumSans_400Regular,
   });
@@ -44,8 +46,8 @@ const SplashScreen2 = ({ props }) => {
           style={styles.button}
         >
           <TouchableOpacity
-            style={[styles.buttonText]}
             onPress={() => navigation.navigate("SplashScreen3")}
+            style={[styles.buttonText]}
           >
             <Text style={[styles.buttonContent, { color: "white" }]}>Next</Text>
           </TouchableOpacity>
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
     width: win.width,
   },
   note: {
-    height: 200,
+    height: 100,
     width: win.width - 30,
     paddingLeft: 0,
     marginTop: 100,
