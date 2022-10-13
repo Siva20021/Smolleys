@@ -31,62 +31,64 @@ import AccountSuccess from "./screens/AccountSuccess";
 import AddChild from "./screens/AddChild";
 import Login from "./screens/Login";
 import ChildAccountSuccess from "./screens/ChildAccountSuccess";
+import MoneyRewards from "./screens/MoneyRewards";
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
-        <Stack.Screen
-          name="SplashScreen"
-          component={SplashScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SplashScreen2"
-          component={SplashScreen2}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SplashScreen3"
-          component={SplashScreen3}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SplashScreen4"
-          component={SplashScreen4}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SplashScreen5"
-          component={SplashScreen5}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SignupParent"
-          component={SignupParent}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="AccountSuccess"
-          component={AccountSuccess}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-    // <View style={styles.container}>
-    //   {/* <Text>Hello world</Text> */}
-    //   {/* <SignupParent /> */}
-    //   {/* <AccountSuccess /> */}
-    //   {/* <AddChild /> */}
+    // <NavigationContainer>
+    //   <Stack.Navigator initialRouteName="SplashScreen">
+    //     <Stack.Screen
+    //       name="SplashScreen"
+    //       component={SplashScreen}
+    //       options={{ headerShown: false }}
+    //     />
+    //     <Stack.Screen
+    //       name="SplashScreen2"
+    //       component={SplashScreen2}
+    //       options={{ headerShown: false }}
+    //     />
+    //     <Stack.Screen
+    //       name="SplashScreen3"
+    //       component={SplashScreen3}
+    //       options={{ headerShown: false }}
+    //     />
+    //     <Stack.Screen
+    //       name="SplashScreen4"
+    //       component={SplashScreen4}
+    //       options={{ headerShown: false }}
+    //     />
+    //     <Stack.Screen
+    //       name="SplashScreen5"
+    //       component={SplashScreen5}
+    //       options={{ headerShown: false }}
+    //     />
+    //     <Stack.Screen
+    //       name="Login"
+    //       component={Login}
+    //       options={{ headerShown: false }}
+    //     />
+    //     <Stack.Screen
+    //       name="SignupParent"
+    //       component={SignupParent}
+    //       options={{ headerShown: false }}
+    //     />
+    //     <Stack.Screen
+    //       name="AccountSuccess"
+    //       component={AccountSuccess}
+    //       options={{ headerShown: false }}
+    //     />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+    <View style={styles.container}>
+      {/* <Text>Hello world</Text> */}
+      {/* <SignupParent /> */}
+      {/* <AccountSuccess /> */}
+      {/* <AddChild /> */}
 
-    //   <SignupParent />
-    //   {/* <SplashScreen5 /> */}
-    // </View>
+      <SignupParent />
+      {/* <SplashScreen5 /> */}
+      <MoneyRewards />
+    </View>
   );
 }
 
