@@ -59,6 +59,21 @@ const SplashScreen5 = ({ navigation }) => {
           </TouchableOpacity>
         </ImageBackground>
       </View>
+      <View style={styles.justify}>
+        <ImageBackground
+          source={require("../assets/Button.png")}
+          style={styles.button}
+        >
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Login")}
+            style={[styles.buttonText]}
+          >
+            <Text style={[styles.buttonContent, { color: "white" }]}>
+              Login Instead
+            </Text>
+          </TouchableOpacity>
+        </ImageBackground>
+      </View>
       <Image
         source={require("../assets/landscape.png")}
         style={styles.bottombar}

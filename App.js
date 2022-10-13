@@ -31,6 +31,8 @@ import AccountSuccess from "./screens/AccountSuccess";
 import AddChild from "./screens/AddChild";
 import Login from "./screens/Login";
 import ChildAccountSuccess from "./screens/ChildAccountSuccess";
+import KidsHomePage from "./screens/KidsHomePage";
+import TimelineScreen from "./screens/TimelineScreen";
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
@@ -74,6 +76,16 @@ export default function App() {
         <Stack.Screen
           name="AccountSuccess"
           component={AccountSuccess}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="KidsHomePage"
+          component={KidsHomePage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TimelineScreen"
+          component={TimelineScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
