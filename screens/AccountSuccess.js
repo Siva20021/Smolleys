@@ -14,7 +14,7 @@ import {
   BubblegumSans_400Regular,
 } from "@expo-google-fonts/bubblegum-sans";
 
-const AccountSuccess = () => {
+const AccountSuccess = ({ navigation }) => {
   let [fontsLoaded] = useFonts({
     BubblegumSans_400Regular,
   });
@@ -26,7 +26,10 @@ const AccountSuccess = () => {
       <Text style={styles.title}>Account created successfully</Text>
       <Image source={require("../assets/OK.png")} style={styles.OK} />
       <View style={styles.justify}>
-        <TouchableOpacity style={[styles.buttonText]}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("KidsHomePage")}
+          style={[styles.buttonText]}
+        >
           <ImageBackground
             source={require("../assets/Button.png")}
             style={styles.button}
