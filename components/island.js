@@ -15,28 +15,13 @@ import {
 
 const win = Dimensions.get("window");
 
-const IslandComponent = ({ position, task, icon, navigation }) => {
+const IslandComponent = ({ position }) => {
   const [open, setOpen] = useState(false);
   let [fontsLoaded] = useFonts({
     BubblegumSans_400Regular,
   });
   if (!fontsLoaded) {
     return null;
-  }
-
-  function getCandy(position) {
-    if (position == 1)
-      return require("../assets/mini-component-assets/candy1.png");
-    if (position == 2)
-      return require("../assets/mini-component-assets/candy2.png");
-    if (position == 3)
-      return require("../assets/mini-component-assets/candy3.png");
-    if (position == 4)
-      return require("../assets/mini-component-assets/candy4.png");
-    if (position == 5)
-      return require("../assets/mini-component-assets/candy5.png");
-    if (position > 5)
-      return require("../assets/mini-component-assets/candy1.png");
   }
 
   function getImage(position) {
@@ -50,7 +35,11 @@ const IslandComponent = ({ position, task, icon, navigation }) => {
       return require("../assets/mini-component-assets/island4.png");
     if (position == 5)
       return require("../assets/mini-component-assets/island5.png");
-    if (position > 5)
+    if (position == 6)
+      return require("../assets/mini-component-assets/island6.png");
+    if (position == 7)
+      return require("../assets/mini-component-assets/island7.png");
+    if (position > 7)
       return require("../assets/mini-component-assets/island1.png");
   }
   return (
@@ -68,60 +57,36 @@ const IslandComponent = ({ position, task, icon, navigation }) => {
         ]}
         source={require("../assets/mini-component-assets/moneyButton.png")}
       >
-        <Text style={styles.emoji}>{icon}</Text>
-        <Text style={styles.todoText}>{task}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("CameraScreen")}>
-          <ImageBackground
-            source={require("../assets/mini-component-assets/blueButton.png")}
-            style={styles.button}
-          >
-            <Text style={styles.todoText}>Complete Task</Text>
-          </ImageBackground>
-        </TouchableOpacity>
+        <Text style={styles.emoji}>🛏️</Text>
+        <Text style={styles.todoText}>Make Your Bed</Text>
+        <ImageBackground
+          source={require("../assets/mini-component-assets/blueButton.png")}
+          style={styles.button}
+        >
+          <Text style={styles.todoText}>Complete Task</Text>
+        </ImageBackground>
       </ImageBackground>
 
       {/* Island */}
-      <View style={{ position: "relative" }}></View>
-      <TouchableOpacity
-        style={{ zIndex: 8, elevation: 8 }}
-        onPress={() => setOpen(!open)}
-      >
+      <TouchableOpacity onPress={() => setOpen(!open)}>
         <Image
-          source={getCandy(position)}
+          source={getImage(position)}
           style={[
-            // position == 7 ? styles.island7 : styles.island,
-            position == 5
-              ? styles.candyCenter
-              : position == 4
-              ? styles.candy4
+            position == 7 ? styles.island7 : styles.island,
+            position == 7
+              ? styles.islandCenter
               : position % 2 == 0
-              ? styles.candyLeft
-              : styles.candyRight,
+              ? styles.islandLeft
+              : styles.islandRight,
           ]}
         />
       </TouchableOpacity>
-      <Image
-        source={getImage(position)}
-        style={[
-          position == 5 ? styles.island7 : styles.island,
-          position == 7
-            ? styles.islandCenter
-            : position % 2 == 0
-            ? styles.islandLeft
-            : styles.islandRight,
-        ]}
-      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   islandPop: {
-    position: "absolute",
-    top: -220,
-    left: 20,
-    elevation: 10,
-    zIndex: 10,
     width: 270,
     margin: 10,
     resizeMode: "contain",
@@ -134,10 +99,9 @@ const styles = StyleSheet.create({
     marginTop: -20,
   },
   island7: {
-    marginTop: 150,
-    height: 310,
-    // width: 310,
-    // marginTop: -20,
+    height: 200,
+    width: 310,
+    marginTop: -20,
   },
   islandLeft: {
     alignSelf: "flex-end",
@@ -147,36 +111,6 @@ const styles = StyleSheet.create({
   },
   islandCenter: {
     alignSelf: "center",
-  },
-  candyLeft: {
-    position: "absolute",
-    elevation: 4,
-    zIndex: 4,
-    top: 0,
-    right: 100,
-  },
-  candy4: {
-    width: 65,
-    height: 65,
-    position: "absolute",
-    elevation: 4,
-    zIndex: 4,
-    top: 0,
-    left: 100,
-  },
-  candyRight: {
-    alignSelf: "flex-start",
-    elevation: 4,
-    zIndex: 4,
-    marginLeft: 25,
-    marginBottom: -65,
-  },
-  candyCenter: {
-    position: "absolute",
-    top: 180,
-    left: 140,
-    elevation: 8,
-    zIndex: 8,
   },
   emoji: {
     fontSize: 70,

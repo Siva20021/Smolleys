@@ -8,7 +8,6 @@ import {
   Button,
   StyleSheet,
   TouchableOpacity,
-  Alert,
 } from "react-native";
 
 import firebase from "firebase/compat/app";
@@ -25,55 +24,18 @@ const SignupParent = ({ navigation }) => {
   const { register, handleSubmit, setValue } = useForm();
   const onSubmit = useCallback((formData) => {
     // Start Code
-    const { email, password, name, phone, country } = formData;
-
-    if (name.length == 0 || email.length == 0 || password.length == 0) {
-      Alert.alert("Error", "Fill Out Everything", [
-        { text: "OK", onPress: () => console.log("OK Pressed") },
-      ]);
-      return;
-    }
-    if (password.length < 6) {
-      Alert.alert("Error", "passwords must be at least 6 characters", [
-        { text: "OK", onPress: () => console.log("OK Pressed") },
-      ]);
-      return;
-    }
-
+    const { email, password, name } = formData;
     firebase
-      .firestore()
-      .collection("users")
-      .where("email", "==", email)
-      .get()
-      .then((snapshot) => {
-        if (!snapshot.exist) {
-          firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then(() => {
-              firebase
-                .firestore()
-                .collection("users")
-                .doc(firebase.auth().currentUser.uid)
-                .set({
-                  name,
-                  email,
-                  image: "default",
-                  phone,
-                  country,
-                  followingCount: 0,
-                  followersCount: 0,
-                });
-              navigation.navigate("AccountSuccess");
-              return;
-            })
-            .catch((e) => {
-              navigation.navigate("AccountSuccess");
-            });
-        }
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        console.log(result);
+        navigation.navigate("AccountSuccess");
+      })
+      .catch((error) => {
+        console.log(error);
       });
-
-    // new end
+    // End
     console.log(formData);
   }, []);
 
