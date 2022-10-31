@@ -19,7 +19,7 @@ const KidsHomePage = ({ navigation }) => {
   return (
     <ImageBackground
       style={styles.bg}
-      source={require("../assets/mini-component-assets/water.png")}
+      source={require("../assets/mini-component-assets/kidsBg.jpg")}
     >
       <TopBar />
       <ScrollView
@@ -29,36 +29,13 @@ const KidsHomePage = ({ navigation }) => {
         // }
         style={styles.direction}
       >
-        <IslandComponent
-          navigation={navigation}
-          task="Do the dishes"
-          icon="🍽️"
-          position="5"
-        />
-        <IslandComponent
-          navigation={navigation}
-          task="Take out the trash"
-          icon="🗑️"
-          position="4"
-        />
-        <IslandComponent
-          navigation={navigation}
-          task="Play Outside"
-          icon="🧸"
-          position="3"
-        />
-        <IslandComponent
-          navigation={navigation}
-          task="Walk the cat"
-          icon="🐈"
-          position="2"
-        />
-        <IslandComponent
-          navigation={navigation}
-          task="Do Homework"
-          icon="🎒"
-          position="1"
-        />
+        <IslandComponent position="7" />
+        <IslandComponent position="6" />
+        <IslandComponent position="5" />
+        <IslandComponent position="4" />
+        <IslandComponent position="3" />
+        <IslandComponent position="2" />
+        <IslandComponent position="1" />
       </ScrollView>
       <BottomNav navigation={navigation} />
     </ImageBackground>
@@ -74,8 +51,8 @@ const styles = StyleSheet.create({
   direction: {
     // flexDirection: "column-reverse",
 
-    height: win.height + 800,
-    paddingBottom: 200,
+    marginTop: 90,
+    marginBottom: 55,
     // paddingBottom: win.height / 6,
   },
 });

@@ -11,10 +11,7 @@ import SplashScreen5 from "./screens/SplashScreen5";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import "firebase/compat/storage";
 
-import { Camera } from "expo-camera";
-import { useEffect, useState, useRef } from "react";
 const firebaseConfig = {
   apiKey: "AIzaSyDFDPLXz0IzK1G3JVg5fRZSNtGKos-sOYk",
   authDomain: "smolley-9b48c.firebaseapp.com",
@@ -36,32 +33,8 @@ import Login from "./screens/Login";
 import ChildAccountSuccess from "./screens/ChildAccountSuccess";
 import KidsHomePage from "./screens/KidsHomePage";
 import TimelineScreen from "./screens/TimelineScreen";
-import CameraScreen from "./screens/CameraScreen";
-import SaveScreen from "./screens/SaveScreen";
 const Stack = createNativeStackNavigator();
 export default function App() {
-  const [hasCameraPermission, setHasCameraPermission] = useState();
-  const [hasMicrophonePermission, setHasMicrophonePermission] = useState();
-
-  useEffect(() => {
-    (async () => {
-      const cameraPermission = await Camera.requestCameraPermissionsAsync();
-      const microphonePermission =
-        await Camera.requestMicrophonePermissionsAsync();
-
-      setHasCameraPermission(cameraPermission.status === "granted");
-      setHasMicrophonePermission(microphonePermission.status === "granted");
-    })();
-  }, []);
-
-  if (
-    hasCameraPermission === undefined ||
-    hasMicrophonePermission === undefined
-  ) {
-    return <Text>Requesting Permission...</Text>;
-  } else if (!hasCameraPermission) {
-    return <Text>Permission for camera not granted.</Text>;
-  }
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SplashScreen">
@@ -113,16 +86,6 @@ export default function App() {
         <Stack.Screen
           name="TimelineScreen"
           component={TimelineScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="CameraScreen"
-          component={CameraScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Save"
-          component={SaveScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
